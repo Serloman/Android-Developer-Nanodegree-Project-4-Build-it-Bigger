@@ -12,6 +12,8 @@ import com.google.api.server.spi.config.ApiNamespace;
 import com.serloman.models.Joke;
 import com.serloman.ChuckNorrisJokesProvider;
 
+import java.util.List;
+
 import javax.inject.Named;
 
 /**
@@ -41,10 +43,25 @@ public class MyEndpoint {
         return response;
     }
 
-    @ApiMethod(name = "getJoke")
+    @ApiMethod(name = "getRandomJoke")
     public Joke getRandomJoke(){
         ChuckNorrisJokesProvider jokesProvider = new ChuckNorrisJokesProvider();
 
         return jokesProvider.getRandomJoke();
     }
+
+    @ApiMethod(name = "getJoke")
+    public Joke getJoke(@Named("id")int id){
+        ChuckNorrisJokesProvider jokesProvider = new ChuckNorrisJokesProvider();
+
+        return jokesProvider.getRandomJoke();
+    }
+
+    @ApiMethod(name = "getMultipleRandomJokes")
+    public List<Joke> getMultipleRandomJokes(@Named("limit") int limit){
+        ChuckNorrisJokesProvider jokesProvider = new ChuckNorrisJokesProvider();
+
+        return jokesProvider.getMultipleRandomJokes(limit);
+    }
+
 }

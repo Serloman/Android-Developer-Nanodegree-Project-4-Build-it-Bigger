@@ -20,15 +20,18 @@ public class ChuckNorrisJokesProvider {
         mService = mRestAdapter.create(ChuckNorrisJokesService.class);
     }
 
+    public Joke getJoke(int idJoke){
+        SingleJoke singleJoke = this.mService.getJoke(idJoke);
+        return singleJoke.getJoke();
+    }
+
     public Joke getRandomJoke(){
         SingleJoke singleJoke = this.mService.getRandomJoke();
-
         return singleJoke.getJoke();
     }
 
     public List<Joke> getMultipleRandomJokes(int limit){
         ApiJokesBatch batch = mService.getMultipleRandomJokes(limit);
-
         return batch.getJokes();
     }
 }
