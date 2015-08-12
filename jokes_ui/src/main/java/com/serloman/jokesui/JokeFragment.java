@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.jokesui.R;
-import com.serloman.Joke;
+import com.serloman.models.Joke;
 
 /**
  * Created by Serloman on 11/08/2015.

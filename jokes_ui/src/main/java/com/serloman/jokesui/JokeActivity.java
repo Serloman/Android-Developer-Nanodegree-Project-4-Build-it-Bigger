@@ -4,7 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.example.jokesui.R;
-import com.serloman.Joke;
+import com.serloman.models.Joke;
 
 public class JokeActivity extends AppCompatActivity {
 
