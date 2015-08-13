@@ -19,6 +19,10 @@ public class JokeFragment extends Fragment {
 
     public final static String ARG_JOKE = "ARG_JOKE";
 
+    public static JokeFragment newInstance(Joke joke){
+        return newInstance(new ParcelableJoke(joke));
+    }
+
     public static JokeFragment newInstance(ParcelableJoke joke){
         JokeFragment fragment = new JokeFragment();
 
@@ -47,13 +51,13 @@ public class JokeFragment extends Fragment {
     }
 
     private void initJoke(){
-        Joke joke = getJoke();
+        ParcelableJoke joke = getJoke();
 
         TextView jokeTextView = (TextView) getView().findViewById(R.id.jokeTextView);
         jokeTextView.setText(joke.getJoke());
     }
 
-    private Joke getJoke(){
+    private ParcelableJoke getJoke(){
         return getArguments().getParcelable(ARG_JOKE);
     }
 }
