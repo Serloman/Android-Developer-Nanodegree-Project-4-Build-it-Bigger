@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.jokesui.R;
-import com.serloman.models.Joke;
+import com.serloman.builditbigger.backend.myApi.model.Joke;
 
 /**
  * Created by Serloman on 11/08/2015.
@@ -19,11 +19,11 @@ public class JokeFragment extends Fragment {
 
     public final static String ARG_JOKE = "ARG_JOKE";
 
-    public static JokeFragment newInstance(Joke joke){
+    public static JokeFragment newInstance(ParcelableJoke joke){
         JokeFragment fragment = new JokeFragment();
 
         Bundle args = new Bundle();
-        args.putParcelable(ARG_JOKE, (Parcelable) joke);
+        args.putParcelable(ARG_JOKE, joke);
         fragment.setArguments(args);
 
         return fragment;

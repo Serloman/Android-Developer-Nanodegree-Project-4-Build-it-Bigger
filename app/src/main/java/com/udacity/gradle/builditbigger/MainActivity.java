@@ -7,6 +7,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.serloman.builditbigger.backend.myApi.model.Joke;
+import com.serloman.jokesui.JokeActivity;
+import com.serloman.jokesui.ParcelableJoke;
+import com.udacity.gradle.builditbigger.apicalls.JokeListener;
+import com.udacity.gradle.builditbigger.apicalls.RandomJokeAsyncTask;
+
 
 public class MainActivity extends ActionBarActivity {
 
@@ -40,7 +46,27 @@ public class MainActivity extends ActionBarActivity {
     }
 
     public void tellJoke(View view){
-        Toast.makeText(this, "derp", Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, "derp", Toast.LENGTH_SHORT).show();
+
+        JokeListener listener = new JokeListener() {
+            @Override
+            public void onJokeReceived(Joke joke) {
+                openJoke(joke);
+            }
+
+            @Override
+            public void onError(Exception ex) {
+                ex.printStackTrace();
+                Toast.makeText(getBaseContext(), getString(R.string.error_getting_joke), Toast.LENGTH_SHORT).show();
+            }
+        };
+
+        RandomJokeAsyncTask task = new RandomJokeAsyncTask(this, listener);
+        task.execute();
+    }
+
+    private void openJoke(Joke joke){
+        startActivity(JokeActivity.newIntent(this, joke));
     }
 
 

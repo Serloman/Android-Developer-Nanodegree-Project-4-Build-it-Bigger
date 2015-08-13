@@ -3,7 +3,7 @@ package com.serloman.jokesui;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import com.serloman.models.Joke;
+import com.serloman.builditbigger.backend.myApi.model.Joke;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * Created by Serloman on 11/08/2015.
  */
-public class ParcelableJoke implements Parcelable, Joke {
+public class ParcelableJoke implements Parcelable {
 
     private int mId;
     private String mJoke;
@@ -33,17 +33,14 @@ public class ParcelableJoke implements Parcelable, Joke {
     }
 
 
-    @Override
     public int getId() {
         return mId;
     }
 
-    @Override
     public String getJoke() {
         return mJoke;
     }
 
-    @Override
     public List<String> getCategories() {
         return mCategories;
     }
