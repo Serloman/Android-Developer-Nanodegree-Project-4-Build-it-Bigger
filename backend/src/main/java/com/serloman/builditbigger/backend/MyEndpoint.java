@@ -35,10 +35,8 @@ public class MyEndpoint {
      */
     @ApiMethod(name = "sayHi")
     public MyBean sayHi(@Named("name") String name) {
-        Joke joke = getRandomJoke();
-
         MyBean response = new MyBean();
-        response.setData("Lol Hi, " + name + " " + joke.getJoke());
+        response.setData("Hi, " + name);
 
         return response;
     }

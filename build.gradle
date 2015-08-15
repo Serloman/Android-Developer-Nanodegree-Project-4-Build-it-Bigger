@@ -17,3 +17,45 @@ allprojects {
         jcenter()
     }
 }
+
+task startBackend {
+    group = 'test backend'
+    description = 'Start a local GCE dev server'
+
+    finalizedBy ':backend:appengineRun'
+
+    doLast {
+        println "Starting local backend"
+    }
+}
+
+task runTest {
+    group = 'test backend'
+    description = 'Run all test'
+
+    dependsOn 'startBackend'
+    finalizedBy ':app:connectedAndroidTest'
+
+    doLast {
+        println "Running Test"
+    }
+}
+
+task shutdownBackend {
+    group = 'test backend'
+    description = 'Shutdown a local GCE dev server'
+
+    dependsOn 'runTest'
+    finalizedBy ':backend:appengineStop'
+
+    doLast {
+        println "Shutting down local backend"
+    }
+}
+
+task testBacked {
+    group = 'test backend'
+    description = 'Test de backend'
+
+    dependsOn = ['startBackend', 'runTest', 'shutdownBackend']
+}
