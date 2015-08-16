@@ -22,35 +22,21 @@ task startBackend {
     group = 'test backend'
     description = 'Start a local GCE dev server'
 
-    finalizedBy ':backend:appengineRun'
-
-    doLast {
-        println "Starting local backend"
-    }
+    dependsOn ':backend:appengineRun'
 }
 
 task runTest {
     group = 'test backend'
     description = 'Run all test'
 
-    dependsOn 'startBackend'
-    finalizedBy ':app:connectedAndroidTest'
-
-    doLast {
-        println "Running Test"
-    }
+    dependsOn = ['startBackend', ':app:connectedAndroidTest']
 }
 
 task shutdownBackend {
     group = 'test backend'
     description = 'Shutdown a local GCE dev server'
 
-    dependsOn 'runTest'
-    finalizedBy ':backend:appengineStop'
-
-    doLast {
-        println "Shutting down local backend"
-    }
+    dependsOn = ['runTest', ':backend:appengineStop']
 }
 
 task testBacked {
