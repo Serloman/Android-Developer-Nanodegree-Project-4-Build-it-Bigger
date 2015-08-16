@@ -46,7 +46,6 @@ public class MainActivity extends ActionBarActivity {
     }
 
     public void tellJoke(View view){
-//        Toast.makeText(this, "derp", Toast.LENGTH_SHORT).show();
 
         JokeListener listener = new JokeListener() {
             @Override
@@ -61,13 +60,33 @@ public class MainActivity extends ActionBarActivity {
             }
         };
 
+        showLoading();
+
         RandomJokeAsyncTask task = new RandomJokeAsyncTask(this, listener);
         task.execute();
+
+//        openJoke(getFakeJoke());
     }
 
-    private void openJoke(Joke joke){
+    protected void openJoke(Joke joke){
         startActivity(JokeActivity.newIntent(this, joke));
+
+        hideLoading();
     }
 
+    protected void showLoading(){
+        findViewById(R.id.jokeLoading).setVisibility(View.VISIBLE);
+    }
 
+    protected void hideLoading(){
+        findViewById(R.id.jokeLoading).setVisibility(View.GONE);
+    }
+
+    @Deprecated
+    private Joke getFakeJoke(){
+        Joke joke = new Joke();
+        joke.setId(0);
+        joke.setJoke("Hey, I'm Chuck!");
+        return joke;
+    }
 }

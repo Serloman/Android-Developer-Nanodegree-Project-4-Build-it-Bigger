@@ -13,6 +13,7 @@ import java.util.List;
 /**
  * Created by Serloman on 12/08/2015.
  */
+@Deprecated
 public class MultipleRandomJokesAsyncTask extends AsyncTask<Integer, Void, List<Joke>> {
 
     private Context mContext;
