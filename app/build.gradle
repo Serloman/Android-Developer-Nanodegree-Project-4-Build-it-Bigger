@@ -17,10 +17,21 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    productFlavors {
+        free {
+            applicationId "com.udacity.gradlse.builditbigger.free"
+            targetSdkVersion 22
+        }
+        paid {
+            applicationId "com.udacity.gradlse.builditbigger.paid"
+            targetSdkVersion 22
+        }
+    }
 }
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.google.android.gms:play-services:7.5.0'
     compile project(':jokes_ui')
+    freeCompile 'com.google.android.gms:play-services:7.5.0'
 }
